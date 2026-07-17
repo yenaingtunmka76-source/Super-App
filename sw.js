@@ -1,4 +1,4 @@
-const CACHE="myitkyina-guide-v4";
+const CACHE="myitkyina-guide-v5";
 const IMAGE_CACHE="myitkyina-images-v1";
 const CORE=["./","./index.html","./manifest.json","./icon-192.png","./icon-512.png"];
 const LANDMARK_IMAGES=[
