@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#081c2a">
   <meta name="description" content="မြစ်ကြီးနားမြို့ရှိ ဟိုတယ်၊ ကျောင်း၊ ဈေး၊ ဘုန်းကြီးကျောင်း၊ ဖုန်းဆိုင်၊ ကားဝပ်ရှော့နှင့် အရေးကြီးနေရာများကို ရှာဖွေလမ်းညွှန်ရယူပါ။">
+  <link rel="preload" as="image" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Myit_Sone.jpg/1280px-Myit_Sone.jpg">
   <title>မြစ်ကြီးနား မြို့လမ်းညွှန် Premium</title>
   <style>
     :root{--navy:#081c2a;--navy2:#0d2a3b;--gold:#d9ab55;--gold2:#f5d99d;--paper:#fbfaf6;--ink:#13232c;--muted:#66747b;--line:#e4e0d6;--white:#fff;--green:#1f7257;--red:#b84a45;--shadow:0 20px 65px rgba(8,28,42,.13)}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Myanmar Text","Noto Sans Myanmar",system-ui,sans-serif}button,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{text-decoration:none;color:inherit}
+    body.splash-active{overflow:hidden}.splash{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;color:#fff;text-align:center;background:linear-gradient(180deg,rgba(3,17,25,.2),rgba(3,17,25,.82)),url("https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Myit_Sone.jpg/1280px-Myit_Sone.jpg") center/cover no-repeat;animation:splashLeave .65s ease 3s forwards}.splash:before{content:"";position:absolute;inset:14px;border:1px solid rgba(245,217,157,.5);border-radius:24px;pointer-events:none}.splash-inner{position:relative;padding:28px}.splash-mark{width:78px;height:78px;margin:0 auto 20px;border:1px solid rgba(245,217,157,.8);border-radius:24px;display:grid;place-items:center;background:rgba(7,27,40,.7);color:var(--gold2);font:800 24px Georgia;box-shadow:0 18px 60px rgba(0,0,0,.3);backdrop-filter:blur(12px)}.splash-kicker{margin:0 0 10px;color:var(--gold2);font:800 9px system-ui;letter-spacing:.24em}.splash h1{margin:0;font-size:clamp(29px,8vw,52px);line-height:1.35;text-shadow:0 4px 22px rgba(0,0,0,.55)}.splash p{margin:10px 0 0;font-size:12px;color:rgba(255,255,255,.78)}.splash-loader{width:120px;height:2px;margin:26px auto 0;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.24)}.splash-loader i{display:block;width:100%;height:100%;background:var(--gold2);transform-origin:left;animation:splashProgress 3s linear forwards}.splash-credit{position:absolute;left:20px;right:20px;bottom:max(24px,env(safe-area-inset-bottom));font:600 7px system-ui;color:rgba(255,255,255,.62)}@keyframes splashProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes splashLeave{to{opacity:0;visibility:hidden;pointer-events:none}}
     .topbar{position:sticky;top:0;z-index:30;height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(15px,5vw,74px);background:rgba(8,28,42,.94);color:#fff;border-bottom:1px solid rgba(255,255,255,.1);backdrop-filter:blur(18px)}
     .brand{display:flex;align-items:center;gap:11px}.crest{width:42px;height:42px;border:1px solid rgba(245,217,157,.6);border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#143c50,#081c2a);color:var(--gold2);font:800 13px Georgia;box-shadow:inset 0 0 0 3px rgba(255,255,255,.035)}.brand-copy{display:grid;line-height:1.25}.brand-copy strong{font-size:14px}.brand-copy small{font:700 8px system-ui;color:var(--gold2);letter-spacing:.16em}.gps{border:1px solid rgba(245,217,157,.6);border-radius:999px;padding:10px 14px;color:var(--gold2);background:rgba(255,255,255,.04);font-size:10px;font-weight:800}
     .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 78% 12%,rgba(217,171,85,.2),transparent 30%),linear-gradient(135deg,#081c2a 0%,#0d3043 67%,#12394b 100%);color:white;padding:72px clamp(15px,5vw,74px) 88px;min-height:600px}.hero:before{content:"MK";position:absolute;right:-2vw;bottom:-130px;font:900 clamp(250px,38vw,590px)/1 Georgia;color:rgba(255,255,255,.025);pointer-events:none}.hero-grid{position:relative;display:grid;grid-template-columns:1fr .92fr;gap:clamp(38px,7vw,100px);align-items:center;max-width:1440px;margin:auto}.kicker{display:flex;align-items:center;gap:9px;color:var(--gold2);font:800 9px system-ui;letter-spacing:.21em}.kicker:before{content:"";width:35px;height:1px;background:var(--gold)}.hero h1{font-size:clamp(42px,5vw,76px);line-height:1.22;letter-spacing:-.055em;margin:20px 0 22px;max-width:720px}.hero h1 em{display:block;font-style:normal;color:var(--gold2)}.hero-copy{font-size:13px;line-height:1.95;color:rgba(255,255,255,.68);max-width:650px}
@@ -31,7 +33,11 @@
     .card .phone{display:block;margin-top:6px;color:#176a50;font:800 8px system-ui;white-space:normal;line-height:1.45}.card .phone.missing{color:#9a8f7b;font-weight:700}
   </style>
 </head>
-<body>
+<body class="splash-active">
+  <div class="splash" id="splash" role="status" aria-label="မြစ်ကြီးနားလမ်းညွှန် ဖွင့်နေသည်">
+    <div class="splash-inner"><div class="splash-mark">MK</div><p class="splash-kicker">MYITKYINA · KACHIN STATE</p><h1>မြစ်ကြီးနား လမ်းညွှန်</h1><p>မြစ်ဆုံမှ ကြိုဆိုပါသည်</p><div class="splash-loader"><i></i></div></div>
+    <a class="splash-credit" href="https://commons.wikimedia.org/wiki/File:Myit_Sone.jpg" target="_blank" rel="noreferrer">မြစ်ဆုံဓာတ်ပုံ · Thawng / Wikimedia Commons · CC BY-SA 4.0</a>
+  </div>
   <header class="topbar">
     <a class="brand" href="#top"><span class="crest">MK</span><span class="brand-copy"><strong>မြစ်ကြီးနား မြို့လမ်းညွှန်</strong><small>PREMIUM CITY DIRECTORY</small></span></a>
     <button class="gps" id="locate">⌖ လက်ရှိနေရာ ရှာမယ်</button>
@@ -92,6 +98,7 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    window.setTimeout(function(){var splash=document.getElementById("splash");if(splash)splash.remove();document.body.classList.remove("splash-active")},3650);
     var CITY={lat:25.383,lon:97.4};
     function P(id,name,en,cat,icon,note,lat,lon,opt){opt=opt||{};return{id:id,name:name,en:en,cat:cat,icon:icon,note:note,lat:lat||CITY.lat,lon:lon||CITY.lon,addr:opt.addr||"မြစ်ကြီးနားမြို့ · Maps တွင် အတိအကျစစ်ပါ",phone:opt.phone||"",approx:opt.approx!==false,source:opt.source||"အခြေခံစာရင်း",image:opt.image||"",imageSource:opt.imageSource||""}}
     var places=[
