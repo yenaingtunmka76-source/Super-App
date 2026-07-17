@@ -1,4 +1,4 @@
-const CACHE="myitkyina-guide-v5";
+const CACHE="myitkyina-guide-v6";
 const IMAGE_CACHE="myitkyina-images-v1";
 const CORE=["./","./index.html","./manifest.json","./icon-192.png","./icon-512.png"];
 const LANDMARK_IMAGES=[
@@ -25,4 +25,3 @@ self.addEventListener("fetch",event=>{
   }
   event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy))}return response})));
 });
-
