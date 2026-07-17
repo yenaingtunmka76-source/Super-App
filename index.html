@@ -179,9 +179,9 @@
     var livePlaces=[],loaded={},selected=places[0],category="အားလုံး",searchText="",origin=null,toastTimer=null;
     var $=function(id){return document.getElementById(id)};
     var favoriteIds=[];try{favoriteIds=JSON.parse(localStorage.getItem("myitkyina-favorites")||"[]")}catch(e){favoriteIds=[]}
-    function openDetailSheet(){if(window.matchMedia("(max-width:620px)").matches){var sheet=$("detailSheet");if(!sheet.classList.contains("open")){try{history.pushState({myitkyinaDetail:true},"",location.href)}catch(e){}}sheet.classList.add("open");$("detailBackdrop").classList.add("open");document.body.classList.add("detail-open")}}
+    function openDetailSheet(){var placeUrl=location.pathname+location.search+"#place="+encodeURIComponent(selected.id);try{if(history.state&&history.state.myitkyinaDetail)history.replaceState({myitkyinaDetail:true},"",placeUrl);else history.pushState({myitkyinaDetail:true},"",placeUrl)}catch(e){}if(window.matchMedia("(max-width:620px)").matches){$("detailSheet").classList.add("open");$("detailBackdrop").classList.add("open");document.body.classList.add("detail-open")}}
     function hideDetailSheet(){$("detailSheet").classList.remove("open");$("detailBackdrop").classList.remove("open");document.body.classList.remove("detail-open")}
-    function closeDetailSheet(){if(history.state&&history.state.myitkyinaDetail)history.back();else hideDetailSheet()}
+    function closeDetailSheet(){if((history.state&&history.state.myitkyinaDetail)||location.hash.indexOf("#place=")===0)history.back();else hideDetailSheet()}
     function updateFavoriteButton(){var saved=favoriteIds.indexOf(selected.id)>-1;$("favoritePlace").textContent=saved?"★ သိမ်းထားပြီး":"☆ သိမ်းထားမယ်";$("favoritePlace").classList.toggle("saved",saved)}
     function escapeHtml(v){return String(v||"").replace(/[&<>'"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]})}
     function notify(msg){$("toast").textContent=msg;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){$("toast").classList.remove("show")},3000)}
