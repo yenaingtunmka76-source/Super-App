@@ -179,8 +179,9 @@
     var livePlaces=[],loaded={},selected=places[0],category="အားလုံး",searchText="",origin=null,toastTimer=null;
     var $=function(id){return document.getElementById(id)};
     var favoriteIds=[];try{favoriteIds=JSON.parse(localStorage.getItem("myitkyina-favorites")||"[]")}catch(e){favoriteIds=[]}
-    function openDetailSheet(){if(window.matchMedia("(max-width:620px)").matches){$("detailSheet").classList.add("open");$("detailBackdrop").classList.add("open");document.body.classList.add("detail-open")}}
-    function closeDetailSheet(){$("detailSheet").classList.remove("open");$("detailBackdrop").classList.remove("open");document.body.classList.remove("detail-open")}
+    function openDetailSheet(){if(window.matchMedia("(max-width:620px)").matches){var sheet=$("detailSheet");if(!sheet.classList.contains("open")){try{history.pushState({myitkyinaDetail:true},"",location.href)}catch(e){}}sheet.classList.add("open");$("detailBackdrop").classList.add("open");document.body.classList.add("detail-open")}}
+    function hideDetailSheet(){$("detailSheet").classList.remove("open");$("detailBackdrop").classList.remove("open");document.body.classList.remove("detail-open")}
+    function closeDetailSheet(){if(history.state&&history.state.myitkyinaDetail)history.back();else hideDetailSheet()}
     function updateFavoriteButton(){var saved=favoriteIds.indexOf(selected.id)>-1;$("favoritePlace").textContent=saved?"★ သိမ်းထားပြီး":"☆ သိမ်းထားမယ်";$("favoritePlace").classList.toggle("saved",saved)}
     function escapeHtml(v){return String(v||"").replace(/[&<>'"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]})}
     function notify(msg){$("toast").textContent=msg;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){$("toast").classList.remove("show")},3000)}
@@ -204,7 +205,7 @@
     document.querySelectorAll("[data-front-cat]").forEach(function(b){b.onclick=function(){category=b.dataset.frontCat;searchText="";$("search").value="";render();document.querySelector(".directory").scrollIntoView({behavior:"smooth"});if(!loaded[category])loadLive(false)}});
     $("search").oninput=function(e){searchText=e.target.value.trim();if(searchText)category="အားလုံး";render()};
     $("liveSearch").onclick=function(){loadLive(true)};
-    $("detailClose").onclick=closeDetailSheet;$("detailBackdrop").onclick=closeDetailSheet;document.addEventListener("keydown",function(e){if(e.key==="Escape")closeDetailSheet()});
+    $("detailClose").onclick=closeDetailSheet;$("detailBackdrop").onclick=closeDetailSheet;window.addEventListener("popstate",hideDetailSheet);document.addEventListener("keydown",function(e){if(e.key==="Escape")closeDetailSheet()});
     $("favoritePlace").onclick=function(){var i=favoriteIds.indexOf(selected.id);if(i>-1)favoriteIds.splice(i,1);else favoriteIds.push(selected.id);try{localStorage.setItem("myitkyina-favorites",JSON.stringify(favoriteIds))}catch(e){}updateFavoriteButton();notify(i>-1?"သိမ်းထားသည့်စာရင်းမှ ဖယ်ပြီးပါပြီ":"ဒီနေရာကို ဖုန်းထဲမှာ သိမ်းထားပြီးပါပြီ")};
     $("sharePlace").onclick=async function(){var url=$("fullMap").href,text=selected.name+" · "+selected.addr;if(navigator.share){try{await navigator.share({title:selected.name,text:text,url:url});return}catch(e){if(e.name==="AbortError")return}}if(navigator.clipboard){try{await navigator.clipboard.writeText(text+"\n"+url);notify("နေရာ link ကို ကူးပြီးပါပြီ");return}catch(e){}}notify("Share မရသေးပါ။ မြေပုံအပြည့်ကိုဖွင့်ပြီး link ကူးနိုင်ပါတယ်")};
     $("hospital").onclick=function(){var p=places.find(function(x){return x.id==="general-hospital"});show(p,true);if(!window.matchMedia("(max-width:620px)").matches)document.querySelector(".detail").scrollIntoView({behavior:"smooth"})};
