@@ -23,6 +23,8 @@
     .toast{position:fixed;left:50%;bottom:22px;z-index:50;transform:translate(-50%,120px);opacity:0;background:#071923;color:white;border:1px solid rgba(245,217,157,.4);border-radius:12px;padding:12px 16px;font-size:9px;box-shadow:var(--shadow);transition:.25s}.toast.show{transform:translate(-50%,0);opacity:1}
     @media(max-width:980px){.hero-grid{grid-template-columns:1fr}.map-shell{height:390px}.main-grid{grid-template-columns:1fr}.detail{position:static}.quick-inner{grid-template-columns:repeat(3,1fr)}.quick-inner>div{grid-column:1/-1}}
     @media(max-width:620px){.topbar{height:66px;padding:0 13px}.brand-copy small{display:none}.gps{padding:8px 10px;font-size:8px}.hero{padding:49px 14px 68px;min-height:0}.hero h1{font-size:41px}.hero-copy{font-size:11px}.map-shell{height:310px;border-radius:22px}.directory{padding:56px 13px 65px;border-radius:25px 25px 0 0}.section-head{display:block}.section-head>p{margin-top:12px}.toolbar{display:block}.actions{margin-top:11px}.live-btn,.maps-btn{flex:1}.cards{grid-template-columns:1fr}.card.has-image{grid-template-columns:105px minmax(0,1fr) 16px}.card.has-image .card-media{width:105px;height:88px}.quick{padding:35px 13px}.quick-inner{grid-template-columns:1fr}.quick-inner>div{grid-column:auto}.quick a,.quick button{min-height:56px}footer{flex-direction:column;text-align:center}.toast{width:calc(100% - 26px);text-align:center}}
+    .front-shortcuts{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px;max-width:680px}.front-shortcuts button{min-height:35px;padding:0 11px;border:1px solid rgba(245,217,157,.28);border-radius:10px;background:rgba(255,255,255,.07);color:#fff;font-size:9px;font-weight:800}.front-shortcuts button:hover{background:var(--gold2);color:var(--navy);border-color:var(--gold2)}
+    .card-media{position:relative}.card.has-image .card-media>span{position:absolute;left:7px;top:7px;z-index:2;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(145deg,var(--gold2),var(--gold));color:var(--navy);font-size:14px;box-shadow:0 5px 15px rgba(8,28,42,.28)}
   </style>
 </head>
 <body>
@@ -40,6 +42,7 @@
           <p class="hero-copy">ဟိုတယ်၊ စာသင်ကျောင်း၊ ဘုန်းကြီးကျောင်း၊ ရပ်ကွက်ဈေး၊ ဖုန်းဆိုင်၊ လျှပ်စစ်ဆိုင်၊ ကားဝပ်ရှော့၊ ဆေးရုံနဲ့ နေ့စဉ်လိုအပ်တဲ့နေရာတွေကို အမျိုးအစားလိုက် ရှာဖွေပြီး လမ်းညွှန်ချက်ရယူပါ။</p>
           <label class="searchbox"><span>⌕</span><input id="search" placeholder="နေရာ၊ ဆိုင်၊ ကျောင်း အမည်ဖြင့်ရှာပါ…"></label>
           <div class="hero-stats"><span><b>15</b>အမျိုးအစား</span><span><b>LIVE</b>မြို့တွင်းဒေတာ</span><span><b>1‑TAP</b>လမ်းညွှန်ချက်</span></div>
+          <div class="front-shortcuts" aria-label="အမြန်ရွေးရန်"><button data-front-cat="ဟိုတယ်">◆ ဟိုတယ်</button><button data-front-cat="ဆေးရုံ/ဆေးဆိုင်">✚ ဆေးရုံ</button><button data-front-cat="စာသင်ကျောင်း">🎓 ကျောင်း</button><button data-front-cat="ဈေး/စတိုး">◉ ဈေး</button><button data-front-cat="ဘုန်းကြီးကျောင်း/ဘုရား">☸ ဘုရား</button><button data-front-cat="ဖုန်း/ကွန်ပျူတာ">▣ ဖုန်းဆိုင်</button><button data-front-cat="ကားဝပ်ရှော့">⚙ ကားဝပ်ရှော့</button></div>
         </div>
         <div class="map-shell">
           <iframe id="map" title="မြစ်ကြီးနား မြေပုံ"></iframe>
@@ -84,13 +87,7 @@
     var CITY={lat:25.383,lon:97.4};
     function P(id,name,en,cat,icon,note,lat,lon,opt){opt=opt||{};return{id:id,name:name,en:en,cat:cat,icon:icon,note:note,lat:lat||CITY.lat,lon:lon||CITY.lon,addr:opt.addr||"မြစ်ကြီးနားမြို့ · Maps တွင် အတိအကျစစ်ပါ",phone:opt.phone||"",approx:opt.approx!==false,source:opt.source||"အခြေခံစာရင်း",image:opt.image||"",imageSource:opt.imageSource||""}}
     var places=[
-      P("yadanar-taik-chyam","ရတနာတက်ချမ်းဟိုတယ်","Yadanar Taik Chyam Hotel","ဟိုတယ်","✦","ဟိုတယ်နှင့်ခရီးသွားလာရေးဝန်ကြီးဌာန၏ ဟိုတယ်စာရင်းတွင်ပါဝင်သော မြစ်ကြီးနားဟိုတယ်။",25.383,97.4,{addr:"အမှတ် (၅၀၉)၊ ယုဇနရပ်ကွက်၊ မြစ်ကြီးနား",source:"အစိုးရစာရင်း"}),
-      P("hotel-madira","Hotel Madira","Hotel Madira","ဟိုတယ်","◆","မြစ်ကြီးနားမြို့ရှိ ဟိုတယ်။",25.383,97.4,{image:"https://img.directhotels.com/mm/myitkyina/hotel-madira-myitkyina/1.jpg",imageSource:"https://www.directhotels.com/Myitkyina/Hotel_Madira_Myitkyina"}),
-      P("new-light","New Light Hotel","New Light Hotel","ဟိုတယ်","◆","မြစ်ကြီးနားမြို့ရှိ ဟိုတယ်။"),
-      P("palm-spring","Palm Spring Resort","Palm Spring Resort","ဟိုတယ်","◆","မြစ်ကြီးနားမြို့ရှိ အပန်းဖြေဟိုတယ်။",25.383,97.4,{image:"https://res.cloudinary.com/dtnun0u2x/image/upload/v1769330364/medium_palm_spring_resort_hotel_myitkyina_myitkyina_1_94e04fceaf.jpg",imageSource:"https://booked.ai/restaurants/lung-ga-pa-kachin-restaurant"}),
-      P("myitkyina-hotel","Hote…654 tokens truncated…myitkyina/"}),
-      P("municipal-market","စည်ပင်သာယာဈေး","City Development Market","ဈေး/စတိုး","▦","ဒေသခံများနေ့စဉ် ဝယ်ယူနိုင်သောဈေး။"),
-      P("night-market","ညဈေးတန်း","Myitkyina Night Market","ဈေး/စတိုး","☾","ညပိုင်းစားသောက်နှင့် ဈေးဝယ်နေရာ။"),
+      P("yadanar-taik-chyam","ရ…1091 tokens truncated…းတန်း","Myitkyina Night Market","ဈေး/စတိုး","☾","ညပိုင်းစားသောက်နှင့် ဈေးဝယ်နေရာ။"),
       P("shwe-set-taw","ဆုတောင်းပြည့် ရွှေစက်တော်ဘုရား","Shwe Set Taw Pagoda","ဘုန်းကြီးကျောင်း/ဘုရား","☸","ဧရာဝတီမြစ်ကမ်းအနီးရှိ အထင်ကရဘုရား။",25.3896,97.4142,{addr:"ဧရာဝတီမြစ်ကမ်း၊ မြစ်ကြီးနား",approx:false}),
       P("airport","မြစ်ကြီးနားလေဆိပ်","Myitkyina Airport","သွားလာရေး","✈","မြစ်ကြီးနားမြို့၏ အဓိကလေဆိပ်။",25.3836,97.3519,{addr:"လေဆိပ်လမ်း၊ မြစ်ကြီးနား",approx:false,image:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Myitkyina_Airport_new_terminal_building_%2828140370102%29.jpg/800px-Myitkyina_Airport_new_terminal_building_%2828140370102%29.jpg",imageSource:"https://en.wikipedia.org/wiki/Myitkyina_Airport"}),
       P("railway","မြစ်ကြီးနားဘူတာ","Myitkyina Railway Station","သွားလာရေး","🚆","မြို့လယ်ရှိ မီးရထားဘူတာ။",25.3852,97.3944,{addr:"ဘူတာရုံလမ်း၊ မြစ်ကြီးနား",approx:false,image:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Myitkyina%2C_Myanmar_%28Burma%29_-_panoramio_%281%29.jpg/800px-Myitkyina%2C_Myanmar_%28Burma%29_-_panoramio_%281%29.jpg",imageSource:"https://en.wikipedia.org/wiki/Myitkyina"}),
@@ -139,6 +136,7 @@
 
     $("cats").innerHTML=categories.map(function(c){return'<button class="cat" data-cat="'+c+'">'+c+"</button>"}).join("");
     document.querySelectorAll(".cat").forEach(function(b){b.onclick=function(){category=b.dataset.cat;searchText="";$("search").value="";render();if(category!=="အားလုံး"&&!loaded[category])loadLive(false)}});
+    document.querySelectorAll("[data-front-cat]").forEach(function(b){b.onclick=function(){category=b.dataset.frontCat;searchText="";$("search").value="";render();document.querySelector(".directory").scrollIntoView({behavior:"smooth"});if(!loaded[category])loadLive(false)}});
     $("search").oninput=function(e){searchText=e.target.value.trim();render()};
     $("liveSearch").onclick=function(){loadLive(true)};
     $("hospital").onclick=function(){var p=places.find(function(x){return x.id==="general-hospital"});show(p);document.querySelector(".detail").scrollIntoView({behavior:"smooth"})};
